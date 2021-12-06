@@ -1,3 +1,7 @@
 html,body{
     width: 100%
 }
+
+.fa-map-marker-alt{
+    color: blue;
+}
