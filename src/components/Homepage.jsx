@@ -1,11 +1,12 @@
 import NavComp from './NavComp.jsx';
 import { useState } from 'react';
-import axios, { Axios } from 'axios';
-import { Container, Button, Row, Form, Card, H1 } from 'react-bootstrap';
+import axios from 'axios';
+import { Container, Button, Row, Form, Card } from 'react-bootstrap';
 
-function Homepage() {
+function Homepage(props) {
     const [formValue, setFormValue] = useState('Enter job title');
-    const [jobResults, setJobSearchResults] = useState([])
+    const [jobResults, setJobSearchResults] = useState([]);
+    console.log("from homepage loggedIn user is:" + props.loggedInUser)
     function handleSubmit(event) {
         event.preventDefault();
         console.log('formValue is: ', formValue)
@@ -40,7 +41,8 @@ function Homepage() {
 
     return (
         <Container>
-            <NavComp></NavComp>
+            <NavComp loggedInUser={props.loggedInUser}></NavComp>
+            <h1>Hi there, {localStorage.getItem('username')}</h1>
             <Row>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">

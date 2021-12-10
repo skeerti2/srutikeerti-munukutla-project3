@@ -2,6 +2,10 @@ html,body{
     width: 100%
 }
 
+.container{
+    max-width: 100%;
+    padding: 0%;
+}
 .fa-map-marker-alt{
     color: blue;
 }

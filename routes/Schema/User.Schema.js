@@ -11,5 +11,9 @@ exports.UserSchema = new Schema({
     email : {
         type: String
     }
+    // },
+    // favoriteJobs : [
+    //     Schema.Types.ObjectId
+    // ]
 });
 
