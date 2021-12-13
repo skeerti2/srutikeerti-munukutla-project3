@@ -2,6 +2,18 @@ html,body{
     width: 100%
 }
 
+.container{
+    max-width: 100%;
+    padding: 0%;
+}
 .fa-map-marker-alt{
     color: blue;
+}
+
+.topBox{
+    margin: 3em;
+}
+
+.nav{
+    background-color: rgb(226, 160, 174);
 }

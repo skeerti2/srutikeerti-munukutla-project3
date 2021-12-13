@@ -10,6 +10,7 @@ exports.UserSchema = new Schema({
     },
     email : {
         type: String
-    }
+    },
+    favoriteJobs : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Job' }]
 });
 
