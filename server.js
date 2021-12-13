@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session')
 const job = require('./routes/job.js');
+const user = require('./routes/user.js')
 const authRouter = require('./routes/authRouter.js')
 const MongoStore = require('connect-mongo')
 const bodyParser = require('body-parser');
@@ -40,7 +41,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use('/api/job', job)
 app.use('/auth', authRouter)
-//app.use('/api/users', User)
+app.use('/api/user', user)
 app.listen(8000, function(){
     console.log("listening")
 });

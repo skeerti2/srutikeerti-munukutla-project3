@@ -2,22 +2,25 @@ import NavComp from './NavComp.jsx';
 import { useState } from 'react';
 import axios from 'axios';
 import { Container, Button, Row, Form, Card } from 'react-bootstrap';
+import { useNavigate} from 'react-router-dom';
 
 function Homepage(props) {
+    const navigate = useNavigate();
     const [formValue, setFormValue] = useState('Enter job title');
     const [jobResults, setJobSearchResults] = useState([]);
-    console.log("from homepage loggedIn user is:" + props.loggedInUser)
+    
     function handleSubmit(event) {
         event.preventDefault();
         console.log('formValue is: ', formValue)
-        axios.get('http://localhost:8000/api/job/getJobByTitle/' + formValue)
+        axios.get('http://localhost:8000/api/job/getJobLikeTitle/' + formValue)
             .then(response => setJobSearchResults(response.data))
             .catch(error => console.log(error))
     }
 
-    function cardClickSubmit(event){
+    function cardClickSubmit(event) {
         event.preventDefault()
-        axios.get('http://localhost:8000/api/job/getJobByTitle/' + formValue)
+        const jobValue = event.target.value
+        axios.get('http://localhost:8000/api/job/getJobByTitle/' + jobValue)
             .then(response => setJobSearchResults(response.data))
             .catch(error => console.log(error))
 
@@ -26,43 +29,49 @@ function Homepage(props) {
     //NOT SURE
     let jobsListCards = jobResults.map(job => {
         return (
-                <Card onClick={cardClickSubmit} style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title>{job.title}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{job.companyName}</Card.Subtitle>
-                        <Card.Text>
+            <Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title>{job.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{job.companyName}</Card.Subtitle>
+                    <Card.Text>
                         <icon class="fas fa-map-marker-alt"></icon>{job.location}
-                         </Card.Text>
-                            <Card.Link href="/JobDetails">View Job Details</Card.Link>
-                    </Card.Body>
-                </Card>
+                    </Card.Text>
+                    <Button onClick={() => {
+                        axios.get('http://localhost:8000/api/job/getJobById/' + job._id)
+                        .then(response => {
+                            console.log(response.data)
+                            props.toSetJobDetails(response.data)
+                        })
+                        .catch(error => console.log(error))
+                    }}>View Details </Button>
+                </Card.Body>
+            </Card>
         )
     })
 
     return (
         <Container>
-            <NavComp loggedInUser={props.loggedInUser}></NavComp>
-            <h1>Hi there, {localStorage.getItem('username')}</h1>
-            <Row>
+            <NavComp></NavComp>
+            <h1>Hi there, {sessionStorage.getItem('username')}</h1>
+            <Row className="topBox">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Search Job Posting</Form.Label>
                         <Form.Control type="title" placeholder={formValue}
                             onChange={(e) =>
                                 setFormValue(e.target.value)} />
-
                     </Form.Group>
                     <Button type="submit">
                         Submit
                     </Button>
                 </Form>
-                </Row>
+            </Row>
 
-            <Row>
+            <Row className="topBox">
                 <h1>Showing jobs for: {formValue === '' ? '' : formValue}</h1>
                 {jobsListCards}
             </Row>
-                
+
         </Container>
     )
 }

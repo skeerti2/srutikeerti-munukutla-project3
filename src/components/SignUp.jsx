@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import setCurrentUser from '../actions/User';
 import { useNavigate } from "react-router";
 
-function SignUp(props) {
+function SignUp() {
     const [inputValidation, setbadInputValidation] = useState("")
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -65,7 +65,7 @@ function SignUp(props) {
               { withCredentials: true })
                 .then(response => {
                     console.log("received a good response")
-                    localStorage.setItem('username', response.data.username);
+                    sessionStorage.setItem('username', response.data.username);
                     navigate("/")
                 })
                 .catch(error => {
@@ -82,9 +82,9 @@ function SignUp(props) {
     
     return (
         <Container>
-            <NavComp loggedInUser = {props.loggedInUser}></NavComp>
+            <NavComp></NavComp>
             <Row>
-                <h1>{localStorage.getItem('username')}</h1>
+                <h1>{sessionStorage.getItem('username')}</h1>
                 <h1>{inputValidation}</h1>
             </Row>
             <Row>

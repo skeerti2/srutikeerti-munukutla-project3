@@ -14,9 +14,15 @@ function deleteUser(user){
     return UserModel.deleteOne(user)
 }
 
+function updateUserFavorites(favoriteDetails){
+    return UserModel.updateOne(
+        {username: favoriteDetails.username},
+        {$push : {favoriteJobs: favoriteDetails.jobDetails._id}})
+}
 
 module.exports = {
     createUser,
     findByUsername,
+    updateUserFavorites,
     deleteUser
 }

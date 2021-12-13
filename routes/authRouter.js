@@ -39,13 +39,25 @@ router.post('/signUp', (req, res) => {
 })
 
 
+router.post('/logIn', (req, res) =>{
+    const {username, password} = req.body;
+    //TODO: need to validate password matching
+    if(req.session.username){
+        res.send('User already logged In')
+    } else{
+        return UserModelAccessor.findByUsername(username)
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(422).send("Hey new User! Please sign up first!"))
+    }
+})
+
 router.get('/logout', (req, res)=>{
     if(!req.session.username){
         req.session.destroy(error => {
             if(error){
                 console.log(error);
             } else {
-                res.send('Session is destroyed')
+                res.status(200).send('Successfully logged out!')
             }
         });
     }

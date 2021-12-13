@@ -9,3 +9,11 @@ html,body{
 .fa-map-marker-alt{
     color: blue;
 }
+
+.topBox{
+    margin: 3em;
+}
+
+.nav{
+    background-color: rgb(226, 160, 174);
+}

@@ -3,26 +3,36 @@ let Schema = mongoose.Schema;
 
 exports.JobSchema = new Schema({
     title : {
-        type: String
+        type: String,
+        required: true
     },
     companyName : {
-        type: String
+        type: String,
+        required: true
     },
     location : {
-        type: String
+        type: String,
+        required: true
+
     },
 	description : {
-        type: String
+        type: String,
+        required: true
     },
     employerMailContact : {
-        type: String
+        type: String,
+        required: true
     },
     companyWebsite : {
-        type: String
+        type: String,
+        default: ''
     },
     postingDate : {
         type: Date,
         default: Date.now()
-    }
+    },
+    createdBy : {
+        type: String,
+    } 
 },
 {collection: 'jobs'});
