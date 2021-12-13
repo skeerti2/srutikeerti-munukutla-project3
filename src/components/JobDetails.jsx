@@ -2,9 +2,9 @@ import NavComp from './NavComp';
 import { Container, Form, Row, Col, Card, Button } from 'react-bootstrap';
 import {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+// import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+// import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+// import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import axios from 'axios';
 
 
@@ -31,7 +31,7 @@ function JobDetails(props) {
         if(sessionStorage.getItem('username')){
             console.log('before axios')
             console.log(favoriteDetails);
-            axios.put("http://localhost:8000/api/user/addToUserFavourite", favoriteDetails)
+            axios.put("/api/user/addToUserFavourite", favoriteDetails)
             .then(response => console.log(response))
             .catch(error => console.log(error))
         }
@@ -44,7 +44,9 @@ function JobDetails(props) {
                     <Card >
                         <Card.Header><h2>{props.jobDetails.companyName}</h2>
                         <Button variant="outline-dark" onClick={addJobToFavourites}>
-                            Add Job to Favorites <FontAwesomeIcon icon={faHeart} />
+                            Add Job to Favorites 
+                            {/* <FontAwesomeIcon icon={faHeart} */}
+                             />
                         </Button>
                         </Card.Header>
                         <Card.Body>
@@ -52,8 +54,12 @@ function JobDetails(props) {
                             <Card.Text>
                                 <div>
                                     <h5>Description: {props.jobDetails.description}</h5>
-                                    <h5><FontAwesomeIcon icon={faMapMarkerAlt} />  {props.jobDetails.location}</h5>
-                                    <p><FontAwesomeIcon icon={faEnvelope} /> {props.jobDetails.employerMailContact}</p>
+                                    <h5>
+                                        {/* <FontAwesomeIcon icon={faMapMarkerAlt} />  */}
+                                     {props.jobDetails.location}</h5>
+                                    <p>
+                                        {/* <FontAwesomeIcon icon={faEnvelope} />  */}
+                                    {props.jobDetails.employerMailContact}</p>
                                     <p>More: {props.jobDetails.companyWebsite}</p>
                                 </div>
                             

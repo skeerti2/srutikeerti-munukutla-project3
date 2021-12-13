@@ -9,6 +9,8 @@ const user = require('./routes/user.js')
 const authRouter = require('./routes/authRouter.js')
 const MongoStore = require('connect-mongo')
 const bodyParser = require('body-parser');
+const path = require('path');
+
 
 const cookieParser = require('cookie-parser');
 
@@ -42,6 +44,15 @@ app.use(express.urlencoded({extended:true}))
 app.use('/api/job', job)
 app.use('/auth', authRouter)
 app.use('/api/user', user)
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', function (req, res) {
+    console.log("received request");
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+    // res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.listen(8000, function(){
     console.log("listening")
 });

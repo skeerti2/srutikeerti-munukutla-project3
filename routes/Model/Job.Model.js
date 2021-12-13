@@ -28,6 +28,7 @@ function findJobLikeTitle(title){
     console.log("query string " + '^'+title);
     return JobModel.find({title: {'$regex': '^'+title, '$options': 'i'}});
 }
+
 module.exports= {
     createJob,
     findAllJobs,

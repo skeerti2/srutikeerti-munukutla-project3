@@ -30,7 +30,7 @@ function NavComp() {
     function handleLogout(event) {
         console.log("handle logout")
         event.preventDefault();
-        axios.get('http://localhost:8000/auth/logout')
+        axios.get('/auth/logout')
         .then(response =>
             {
                 sessionStorage.removeItem('username')
@@ -51,6 +51,7 @@ function NavComp() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
+                        <Nav.Link href="/favorites">Favorites</Nav.Link>
                             <NavDropdown title={"Hi! " + user} id="basic-nav-dropdown">
                             <NavDropdown.Item href="/createJob">Create a Job</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.1">View Favorites</NavDropdown.Item>
