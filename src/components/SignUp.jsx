@@ -57,7 +57,7 @@ function SignUp() {
         if (!userDetails.username && !userDetails.password) {
             setbadInputValidation("username/password cannot be empty")
         } else {
-            axios.post("http://localhost:8000/auth/signUp", userDetails, {
+            axios.post("/auth/signUp", userDetails, {
             headers: {
                 'Content-Type': 'application/json'
               }

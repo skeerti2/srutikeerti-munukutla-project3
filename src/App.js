@@ -3,6 +3,8 @@ import './App.css';
 import './jobportal.css';
 
 import Homepage from './components/Homepage.jsx';
+import Favorites from './components/Favorites.jsx';
+
 import {Routes, Router, Route} from 'react-router-dom';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
@@ -53,6 +55,8 @@ function App() {
         <Route path="/api/user/:userFavorites" element={<UserFavoriteList/>}/>
         <Route path="/logIn" element={<LogIn/>}/>
         <Route path="/signUp" element={<SignUp/>}/>
+        <Route path="/favorites" element={<Favorites/>}/>
+
       </Routes>
     </div>
     // </Provider>

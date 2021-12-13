@@ -78,7 +78,7 @@ function JobCreate(props) {
         })
 
         console.log("post request from front end", jobDetails)
-            axios.post("http://localhost:8000/api/job/createjob", jobDetails)
+            axios.post("/api/job/createjob", jobDetails)
                 .then(response => {
                     console.log(response.data)
                     props.toSetJobDetails(response.data)

@@ -12,7 +12,7 @@ function Homepage(props) {
     function handleSubmit(event) {
         event.preventDefault();
         console.log('formValue is: ', formValue)
-        axios.get('http://localhost:8000/api/job/getJobLikeTitle/' + formValue)
+        axios.get('/api/job/getJobLikeTitle/' + formValue)
             .then(response => setJobSearchResults(response.data))
             .catch(error => console.log(error))
     }
@@ -20,7 +20,7 @@ function Homepage(props) {
     function cardClickSubmit(event) {
         event.preventDefault()
         const jobValue = event.target.value
-        axios.get('http://localhost:8000/api/job/getJobByTitle/' + jobValue)
+        axios.get('/api/job/getJobByTitle/' + jobValue)
             .then(response => setJobSearchResults(response.data))
             .catch(error => console.log(error))
 
@@ -37,7 +37,7 @@ function Homepage(props) {
                         <icon class="fas fa-map-marker-alt"></icon>{job.location}
                     </Card.Text>
                     <Button onClick={() => {
-                        axios.get('http://localhost:8000/api/job/getJobById/' + job._id)
+                        axios.get('/api/job/getJobById/' + job._id)
                         .then(response => {
                             console.log(response.data)
                             props.toSetJobDetails(response.data)
