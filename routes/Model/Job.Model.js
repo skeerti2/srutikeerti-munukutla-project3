@@ -15,6 +15,18 @@ function findJobByTitle(title){
     return JobModel.find({title: title}).exec();
 }
 
+function updateJob(job){
+    return JobModel.findOneAndUpdate({id: job._id},{
+        title: job.title,
+        companyName: job.companyName,
+        location: job.location,
+        description: job.description,
+        employerMailContact: job.employerMailContact,
+        companyWebsite: job.companyWebsite,
+        postingDate: job.postingDate,
+        createdBy: job.createdBy
+    })
+}
 
 function findJobById(id){
     return JobModel.findOne({_id: id}).exec();
@@ -31,6 +43,7 @@ function findJobLikeTitle(title){
 
 module.exports= {
     createJob,
+    updateJob,
     findAllJobs,
     findJobLikeTitle,
     findJobByTitle,

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import NavComp from '../components/NavComp'
 import { Container, Form, Row, Col, Card, Button } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
@@ -10,7 +11,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 function Favorites() {
     const sessionUser = sessionStorage.getItem('username');
     const [favoriteJobs, setFavoriteJobs] = useState([])
-
+    const navigate = useNavigate()
     function getFavoriteJobsForUser() {
         console.log("calling function")
         axios.get('/api/user/getAllFavorites/'+ sessionUser)
@@ -33,13 +34,7 @@ function Favorites() {
                         <icon class="fas fa-map-marker-alt"></icon>{item.location}
                     </Card.Text>
                     <Button onClick={() => {
-                        axios.get('/api/job/getJobById/' + item._id)
-                        .then(response => {
-                            console.log(response.data)
-
-                            //props.toSetJobDetails(response.data)
-                        })
-                        .catch(error => console.log(error))
+                        navigate('/jobDetails/'+item._id)
                     }}>View Details </Button>
                 </Card.Body>
             </Card>

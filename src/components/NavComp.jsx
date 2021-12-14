@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Navbar, Container, Nav, NavDropdown, Button, Form, FormControl} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLevelUpAlt } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../jobportal.css';
@@ -45,16 +47,16 @@ function NavComp() {
     if (user) {
         console.log("user is logged in and details are: " + user)
         return (
-            <Navbar className="nav" bg="light" expand="lg">
+            <Navbar className="nav" expand="lg">
                 <Container>
-                    <Navbar.Brand href="/">Switch Up</Navbar.Brand>
+                    <Navbar.Brand className="brand-icon-text" href="/">Switch<FontAwesomeIcon icon={faLevelUpAlt}/>Up</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                         <Nav.Link href="/favorites">Favorites</Nav.Link>
                             <NavDropdown title={"Hi! " + user} id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/createJob">Create a Job</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.1">View Favorites</NavDropdown.Item>
+                            <NavDropdown.Item href={'/createJob/' + null}>Create a Job</NavDropdown.Item>
+                                {/* <NavDropdown.Item href="#action/3.1">View Favorites</NavDropdown.Item> */}
                                 {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item> */}
                                 {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                                 <NavDropdown.Divider />
@@ -73,19 +75,19 @@ function NavComp() {
         return (
             <Container>
 
-                <Navbar className="nav" bg="light" expand="lg">
+                <Navbar className="nav" expand="lg">
                     <Container>
-                        <Navbar.Brand href="/">Switch Up</Navbar.Brand>
+                        <Navbar.Brand className="brand-icon-text" href="/">Switch Up</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
 
-                                <Button>
+                                <Button variant="outline-light">
                                     <LinkContainer to="/logIn">
                                         <Nav.Link>Log In</Nav.Link>
                                     </LinkContainer>
                                 </Button>
-                                <Button>
+                                <Button variant="outline-light">
                                     <LinkContainer to="/signUp">
                                         <Nav.Link>Sign Up</Nav.Link>
                                     </LinkContainer>

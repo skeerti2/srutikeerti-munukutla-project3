@@ -2,6 +2,9 @@ import NavComp from './NavComp.jsx';
 import { useState } from 'react';
 import axios from 'axios';
 import { Container, Button, Row, Form, Card } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLevelUpAlt } from '@fortawesome/free-solid-svg-icons'
+
 import { useNavigate} from 'react-router-dom';
 
 function Homepage(props) {
@@ -37,12 +40,7 @@ function Homepage(props) {
                         <icon class="fas fa-map-marker-alt"></icon>{job.location}
                     </Card.Text>
                     <Button onClick={() => {
-                        axios.get('/api/job/getJobById/' + job._id)
-                        .then(response => {
-                            console.log(response.data)
-                            props.toSetJobDetails(response.data)
-                        })
-                        .catch(error => console.log(error))
+                            navigate('/jobDetails/' + job._id)
                     }}>View Details </Button>
                 </Card.Body>
             </Card>
@@ -52,21 +50,28 @@ function Homepage(props) {
     return (
         <Container>
             <NavComp></NavComp>
-            <h1>Hi there, {sessionStorage.getItem('username')}</h1>
+            <Row>
+                <section class="banner">
+                    <h1 className="banner-title">Switch<FontAwesomeIcon icon={faLevelUpAlt}/>Up  </h1>
+                    <h5>Making dreams a reality</h5>
+                </section>
+            </Row>
+            {/* <h1>Hi there, {sessionStorage.getItem('username')}</h1> */}
             <Row className="topBox">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Search Job Posting</Form.Label>
-                        <Form.Control type="title" placeholder={formValue}
+                        <Form.Control className="search-control" type="title" placeholder={formValue}
                             onChange={(e) =>
                                 setFormValue(e.target.value)} />
                     </Form.Group>
-                    <Button type="submit">
+                    <Button type="submit" variant="outline-dark">
                         Submit
                     </Button>
                 </Form>
             </Row>
 
+          
             <Row className="topBox">
                 <h1>Showing jobs for: {formValue === '' ? '' : formValue}</h1>
                 {jobsListCards}

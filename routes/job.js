@@ -15,6 +15,19 @@ router.post('/createjob', (req, res) => {
     })
 })
 
+router.put('/updatejob', (req, res) => {
+    //TODO: Add validation
+    console.log("update req received")
+    console.log(req.body)
+    return JobModelAccessor.updateJob(req.body)
+    .then(jobresponse => res.status(200).send(jobresponse))
+    .catch(error => {
+        console.log(error)
+        res.status(400).send(error)
+    })
+})
+
+
 router.get('/getAllJobs', (req, res) => {
     // const newJob = new JobModel({title: req.body.title, }
     console.log(req.session)
