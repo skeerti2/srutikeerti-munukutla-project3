@@ -10,15 +10,17 @@ router.post('/signUp', (req, res) => {
     
     //if user is already logged in, the send error
     // else, if user signing up, add user to session
-    console.log("session ID before setting session username : " +req.sessionID)
+    //console.log("session ID before setting session username : " +req.sessionID)
     if(!req.session.username){
-        req.session.username = username
-        console.log("current session is of", req.session + "with session ID : " + req.sessionID)
+        //console.log("current session is of", req.session + "with session ID : " + req.sessionID)
     return UserModelAccessor.findByUsername(username)
         .then(response => {
             if (!response) {
                 UserModelAccessor.createUser(req.body)
-                    .then(newRes => res.status(200).send(newRes))
+                    .then(newRes => {
+                        req.session.username = username
+                        res.status(200).send(newRes)
+                    })
                     .catch(error => {
                         console.log("Error creating a user")
                         return res.status(400).send("Error creating a user")

@@ -32,14 +32,14 @@ function Homepage(props) {
     //NOT SURE
     let jobsListCards = jobResults.map(job => {
         return (
-            <Card style={{ width: '18rem' }}>
+            <Card className="searchResultCard" style={{ width: '18rem' }}>
                 <Card.Body>
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{job.companyName}</Card.Subtitle>
                     <Card.Text>
                         <icon class="fas fa-map-marker-alt"></icon>{job.location}
                     </Card.Text>
-                    <Button onClick={() => {
+                    <Button variant="outline-dark" onClick={() => {
                             navigate('/jobDetails/' + job._id)
                     }}>View Details </Button>
                 </Card.Body>

@@ -33,7 +33,7 @@ function Favorites() {
                     <Card.Text>
                         <icon class="fas fa-map-marker-alt"></icon>{item.location}
                     </Card.Text>
-                    <Button onClick={() => {
+                    <Button variant="outline-dark" onClick={() => {
                         navigate('/jobDetails/'+item._id)
                     }}>View Details </Button>
                 </Card.Body>
@@ -41,12 +41,23 @@ function Favorites() {
         )
     })
 
+    function display(){
+        if(favoritesTodisplay.length !== 0){
+            return (
+                <h1>{sessionUser}, here are your favorite jobs</h1>
+            )
+        }else{
+            return(
+            <h1>{sessionUser}, you have no favorite jobs yet</h1>
+            )
+        }
+    }
+
     return (
         <Container>
             <NavComp></NavComp>
-            {console.log("calling inside return")}
             <Row className="topBox">
-                <h1>{sessionUser}, here are your favorite jobs</h1>
+                {display()}
                 {favoritesTodisplay}
             </Row>
         </Container>
