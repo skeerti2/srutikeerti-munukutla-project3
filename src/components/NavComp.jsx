@@ -31,7 +31,7 @@ function NavComp() {
 
     function handleLogout(event) {
         console.log("handle logout")
-        event.preventDefault();
+        //event.preventDefault();
         axios.get('/auth/logout', {withCredentials: true})
         .then(response =>
             {
@@ -54,16 +54,14 @@ function NavComp() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                         <Nav.Link href="/favorites">Favorites</Nav.Link>
-                            <NavDropdown title={"Hi! " + user} id="basic-nav-dropdown">
+                            <NavDropdown title={"Hi!  " + user} id="basic-nav-dropdown">
                             <NavDropdown.Item href={'/createJob/' + null}>Create a Job</NavDropdown.Item>
                                 {/* <NavDropdown.Item href="#action/3.1">View Favorites</NavDropdown.Item> */}
                                 {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item> */}
                                 {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="/">
-                                    <Form className="d-flex" onSubmit={handleLogout}>
-                                        <Button type="submit" variant="outline-success">Logout</Button>
-                                    </Form>
+                                <NavDropdown.Item>
+                                    <Button type="submit" onClick={handleLogout}variant="outline-success">Logout</Button>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
@@ -77,17 +75,17 @@ function NavComp() {
 
                 <Navbar className="nav" expand="lg">
                     <Container>
-                        <Navbar.Brand className="brand-icon-text" href="/">Switch Up</Navbar.Brand>
+                    <Navbar.Brand className="brand-icon-text" href="/">Switch<FontAwesomeIcon icon={faLevelUpAlt}/>Up</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
 
-                                <Button variant="outline-light">
+                                <Button className="logInButton" variant="outline-light">
                                     <LinkContainer to="/logIn">
                                         <Nav.Link>Log In</Nav.Link>
                                     </LinkContainer>
                                 </Button>
-                                <Button variant="outline-light">
+                                <Button className="submitButton" variant="outline-light">
                                     <LinkContainer to="/signUp">
                                         <Nav.Link>Sign Up</Nav.Link>
                                     </LinkContainer>

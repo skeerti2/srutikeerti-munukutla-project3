@@ -47,7 +47,7 @@ function LogIn() {
                 })
                 .catch(error => {
                     console.log(error)
-                    // setErrorMsg(error.response.data)
+                    setErrorMsg(error.response.data)
                 })
         }
     }
@@ -55,28 +55,31 @@ function LogIn() {
     return (
         <Container>
              <NavComp></NavComp>
-            <Row>
+            <Row className="topRow">
                 <h1>{errorMsg}</h1>
                 <h1>{inputValidation}</h1>
             </Row>
+
+            <Card className="shadow-lg p-3 mb-5 bg-white rounded authFormCard">
             <Row>
                 <Form onSubmit={handleLogIn}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Enter user name</Form.Label>
-                        <Form.Control type="username" placeholder="Enter your user name"
+                        <Form.Label>Please enter user name</Form.Label>
+                        <Form.Control required type="username" placeholder="Enter your user name"
                             onChange={(e) => handleNameChange(e)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password"
+                        <Form.Label>Enter password</Form.Label>
+                        <Form.Control required type="password" placeholder="Password"
                             onChange={(e) => handlePasswordChange(e)} />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="outline-dark" type="submit">
                         Submit
                     </Button>
                 </Form>
             </Row>
+            </Card>
            
             </Container>
     )

@@ -29,7 +29,7 @@ mongoDB.on('error', console.error.bind(console, 'Error connecting to the databas
 
 app.use(session({
     secret: "SUPER_SECRET_KEY",
-    cookie:{secure: false, expires: 60000},
+    cookie:{secure: false, expires: 600000},
     store: MongoStore.create({mongoUrl: mongoDBEndpoint}),
 }))
 

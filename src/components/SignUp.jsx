@@ -2,8 +2,7 @@ import NavComp from "./NavComp";
 import { Container, Button, Row, Form, Card } from 'react-bootstrap';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import setCurrentUser from '../actions/User';
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
     const [inputValidation, setbadInputValidation] = useState("")
@@ -83,34 +82,38 @@ function SignUp() {
     return (
         <Container>
             <NavComp></NavComp>
-            <Row>
-                <h1>{sessionStorage.getItem('username')}</h1>
+            <Row className="topRow">
+                <h1>{errorMsg}</h1>
                 <h1>{inputValidation}</h1>
             </Row>
+
+            <Card className="shadow-lg p-3 mb-5 bg-white rounded authFormCard">
             <Row>
                 <Form onSubmit={handleSignUp}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Enter user name</Form.Label>
-                        <Form.Control type="username" placeholder="Enter your user name"
+                        <Form.Control required type="username" placeholder="Enter your user name"
                             onChange={(e) => handleNameChange(e)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Enter Email Address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter your email address"
+                        <Form.Control required type="email" placeholder="Enter your email address"
                             onChange={(e) => handleEmailChange(e)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password"
+                        <Form.Control required type="password" placeholder="Password"
                             onChange={(e) => handlePasswordChange(e)} />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="outline-dark" type="submit">
                         Submit
                     </Button>
                 </Form>
             </Row>
+            </Card>
+
            
             </Container>
     )
