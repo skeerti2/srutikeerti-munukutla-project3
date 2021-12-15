@@ -87,11 +87,14 @@ function JobDetails() {
         }
 
     //
-    function deleteForm() {
+    function deleteJob() {
         console.log("delete the job")
-        // axios.delete('/api/job/deleteByjobId/'+jobId)
-        // .then(response => console.log(response))
-        // .catch(error => console.log(error));
+        axios.delete('/api/job/deleteByjobId/'+jobId, {withCredentials: true})
+        .then(response => {
+            navigate('/')
+            console.log(response)
+        })
+        .catch(error => console.log(error));
     }
 
     function showEditDetails() {
@@ -104,7 +107,7 @@ function JobDetails() {
                         Edit Job
                 </Button>
 
-                    <Button variant="outline-dark" type="submit" onClick={deleteForm} id="buttonDelete">
+                    <Button variant="outline-dark" type="submit" onClick={deleteJob} id="buttonDelete">
                         Delete Job
                 </Button>
                 </div>

@@ -7,6 +7,10 @@ function createUser(user){
     return UserModel.create(user);
 }
 
+function findAllUsers(){
+    return UserModel.find().exec();
+}
+
 function findByUsername(username){
     return UserModel.findOne({username: username});
 }
@@ -30,6 +34,7 @@ function unFavoriteJobOfUser(unfavoriteJobDetails){
 
 module.exports = {
     createUser,
+    findAllUsers,
     findByUsername,
     updateUserFavorites,
     unFavoriteJobOfUser,

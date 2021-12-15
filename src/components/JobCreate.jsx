@@ -39,7 +39,8 @@ function JobCreate() {
         const company = e.target.value
         setJobDetails({
             ...jobDetails,
-            companyName: company
+            companyName: company,
+            createdBy: sessionStorage.getItem('username')
         })
     }
 
@@ -95,11 +96,6 @@ function JobCreate() {
 
     function handleCreateJob(event) {
         event.preventDefault();
-        setJobDetails({
-            ...jobDetails,
-            createdBy: sessionStorage.getItem('username')
-        })
-
         console.log("post request from front end", jobDetails)
         axios.post("/api/job/createjob", jobDetails,  {withCredentials: true})
             .then(response => {
