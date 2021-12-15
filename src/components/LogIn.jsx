@@ -14,10 +14,10 @@ function LogIn() {
     const navigate = useNavigate();
 
     function handleNameChange(e) {
-        const username = e.target.value
+        let username = e.target.value
         setUserDetails({
             ...userLogInDetails,
-            username: username
+            username: username.toLowerCase()
         })
     }
 
@@ -52,11 +52,20 @@ function LogIn() {
         }
     }
 
+    if(sessionStorage.getItem('username')){
+        return (
+            <Container>
+                <NavComp></NavComp>
+                <h1>Already logged In</h1>
+            </Container>
+        )
+       
+    }else{
     return (
         <Container>
              <NavComp></NavComp>
             <Row className="topRow">
-                <h1>{errorMsg}</h1>
+                <h1 className="errorDisplay">{errorMsg}</h1>
                 <h1>{inputValidation}</h1>
             </Row>
 
@@ -64,13 +73,13 @@ function LogIn() {
             <Row>
                 <Form onSubmit={handleLogIn}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Please enter user name</Form.Label>
+                        <Form.Label>User name</Form.Label>
                         <Form.Control required type="username" placeholder="Enter your user name"
                             onChange={(e) => handleNameChange(e)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Enter password</Form.Label>
+                        <Form.Label>Password</Form.Label>
                         <Form.Control required type="password" placeholder="Password"
                             onChange={(e) => handlePasswordChange(e)} />
                     </Form.Group>
@@ -83,6 +92,7 @@ function LogIn() {
            
             </Container>
     )
+    }
 }
 
 export default LogIn;

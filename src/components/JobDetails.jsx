@@ -21,7 +21,6 @@ function JobDetails() {
         axios.get('/api/job/getJobById/' + jobId)
             .then(response => {
                 console.log(response)
-
                 setJobDetails(response.data)
             })
             .catch(error => console.log(error))
@@ -47,9 +46,6 @@ function JobDetails() {
     useEffect(getJobFromId, [])
     useEffect(getUserFavorites, [])
 
-    console.log(jobId);
-
-
     function addJobToFavourites() {
         //NOTE: using local state gives null for favorite details. Accessing immediately after setting local state
         // fails since its asynchronous. So this making this a local variable instead
@@ -72,11 +68,10 @@ function JobDetails() {
     }
 
     function editJobDetails() {
-        navigate('/createJob/' + jobDetails._id)
+        navigate('/createJob/' + jobId)
     }
 
     function removeJobFromFavorites(){
-        // const unfavoriteUserJob = {'username': jobDetails.createdBy, 'jobId': jobDetails._id}
         console.log("testing")
         axios.delete("/api/user/removeJobFromFavorites/" + jobDetails._id, {withCredentials: true})
                 .then(response => {
@@ -86,7 +81,7 @@ function JobDetails() {
                 .catch(error => console.log(error))
         }
 
-    //
+
     function deleteJob() {
         console.log("delete the job")
         axios.delete('/api/job/deleteByjobId/'+jobId, {withCredentials: true})
@@ -140,7 +135,9 @@ function JobDetails() {
                             </h2>
                             </Card.Header>
                             <Card.Body>
-                                <Card.Title>{jobDetails.title}</Card.Title>
+                                <Card.Title>
+                                    <h3>{jobDetails.title}</h3>
+                                    </Card.Title>
                                 <Card.Text>
                                     <div>
                                         <h5>Description: {jobDetails.description}</h5>

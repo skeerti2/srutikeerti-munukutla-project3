@@ -91,6 +91,20 @@ form{
     width: 50%;
 
 }
+
+h1{
+    text-align: center;
+}
+
+.errorDisplay{
+    margin-top: 1em;
+    text-align: center;
+}
+
+.searchResultCard{
+    width: '18rem',
+    
+}
 @media screen and (min-width: 992px) {
     .logInButton{
         margin-right: 1.5em;

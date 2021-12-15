@@ -16,7 +16,8 @@ function findJobByTitle(title){
 }
 
 function updateJob(job){
-    return JobModel.findOneAndUpdate({id: job._id},{
+    console.log(job._id)
+    return JobModel.findOneAndUpdate({_id: job._id},{
         title: job.title,
         companyName: job.companyName,
         location: job.location,
@@ -38,7 +39,7 @@ function findJobByLocation(location){
 
 function findJobLikeTitle(title){
     console.log("query string " + '^'+title);
-    return JobModel.find({title: {'$regex': '^'+title, '$options': 'i'}}).exec();
+    return JobModel.find({title: {'$regex': title, '$options': 'i'}}).exec();
 }
 
 function deleteJob(jobId){

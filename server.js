@@ -10,7 +10,9 @@ const authRouter = require('./routes/authRouter.js')
 const MongoStore = require('connect-mongo')
 const bodyParser = require('body-parser');
 const path = require('path');
-
+const multer = require('multer')
+const storage = multer.memoryStorage();
+const upload = multer({storage : storage})
 
 const cookieParser = require('cookie-parser');
 
@@ -18,7 +20,7 @@ const cookieParser = require('cookie-parser');
 
 // app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.json())
-const mongoDBEndpoint = process.env.MONGODB_URI || 'mongodb://127.0.0.1/jobportalapp_database';
+const mongoDBEndpoint = process.env.MONGODB_URI;
 
 const mongoConnect = mongoose.connect(mongoDBEndpoint, {useNewUrlParser: true});
 // mongoConnect.on('connect', console.log("connected to database"))

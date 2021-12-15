@@ -14,6 +14,7 @@ function JobCreate() {
     const navigate = useNavigate()
     const [jobDetails, setJobDetails] = useState(null);
     const [fileName, setFileName] = useState("Upload Company Logo File");
+    const [file, setFile] = useState(null);
     const [jobPostingDate, setJobPostingDate] = useState(new Date());
     console.log(jobId === "null")
 
@@ -54,7 +55,8 @@ function JobCreate() {
 
     function handleFileUpload(event) {
         console.log(event.target.files[0])
-        setFileName(event.target.files[0])
+        setFile(event.target.files[0])
+        setFileName(event.target.files[0].name)
         setJobDetails({
             ...jobDetails,
             companyImage: fileName
@@ -277,7 +279,7 @@ function JobCreate() {
                                 <Form.Check type="checkbox" label="Favourite" />
                             </Form.Group> */}
 
-                        <Button variant="primary" type="submit">
+                        <Button variant="outline-dark" type="submit">
                             Submit
                             </Button>
                     </Form>
