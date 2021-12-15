@@ -7,6 +7,10 @@ function createUser(user){
     return UserModel.create(user);
 }
 
+function findAllUsers(){
+    return UserModel.find().exec();
+}
+
 function findByUsername(username){
     return UserModel.findOne({username: username});
 }
@@ -20,9 +24,19 @@ function updateUserFavorites(favoriteDetails){
         {$push : {favoriteJobs: favoriteDetails.jobDetails._id}})
 }
 
+function unFavoriteJobOfUser(unfavoriteJobDetails){
+    console.log(unfavoriteJobDetails)
+    return UserModel.updateOne({username: unfavoriteJobDetails.username},
+        {$pullAll: {
+            favoriteJobs: [unfavoriteJobDetails.jobId]
+        }})
+}
+
 module.exports = {
     createUser,
+    findAllUsers,
     findByUsername,
     updateUserFavorites,
+    unFavoriteJobOfUser,
     deleteUser
 }

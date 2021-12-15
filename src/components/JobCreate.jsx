@@ -1,6 +1,6 @@
 import NavComp from './NavComp';
 import axios from 'axios';
-import { Container, Form, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Form, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import DatePicker from "react-datepicker";
@@ -39,7 +39,8 @@ function JobCreate() {
         const company = e.target.value
         setJobDetails({
             ...jobDetails,
-            companyName: company
+            companyName: company,
+            createdBy: sessionStorage.getItem('username')
         })
     }
 
@@ -95,13 +96,8 @@ function JobCreate() {
 
     function handleCreateJob(event) {
         event.preventDefault();
-        setJobDetails({
-            ...jobDetails,
-            createdBy: sessionStorage.getItem('username')
-        })
-
         console.log("post request from front end", jobDetails)
-        axios.post("/api/job/createjob", jobDetails)
+        axios.post("/api/job/createjob", jobDetails,  {withCredentials: true})
             .then(response => {
                 console.log(response.data)
                 navigate('/jobDetails/' + response.data._id)
@@ -120,7 +116,7 @@ function JobCreate() {
             ...jobDetails,
             createdBy: sessionStorage.getItem('username')
         })
-        axios.put("/api/job/updateJob", jobDetails)
+        axios.put("/api/job/updateJob", jobDetails,  {withCredentials: true})
             .then(response => {
                 console.log(response.data)
                 navigate('/jobDetails/' + response.data._id)
@@ -132,7 +128,7 @@ function JobCreate() {
             })
     }
 
-   
+
 
 
     if (jobId !== "null") {
@@ -142,8 +138,10 @@ function JobCreate() {
                     <NavComp>
                     </NavComp>
                     <Row>
-                        <h1>Create a Job</h1>
-                    </Row>
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>                    
+                        </Row>
                 </Container>
             )
         } else {
@@ -239,7 +237,7 @@ function JobCreate() {
 
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Default file input example</Form.Label>
-                            <Form.Control type="file"  onChange={handleFileUpload}/>
+                            <Form.Control type="file" onChange={handleFileUpload} />
                         </Form.Group>
 
                         {/* <Form.Group className="mb-3" controlId="formJobPostingDate">

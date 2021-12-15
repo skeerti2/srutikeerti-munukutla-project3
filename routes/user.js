@@ -32,5 +32,17 @@ router.get('/getAllFavorites/:username', (req, res) => {
     })
 })
 
+router.delete('/removeJobFromFavorites/:unfavoriteJobId', (req, res) => {
+    console.log(req.session)
+    console.log("request to remove favorites received"+ " name: " + req.session.username + " " +req.params.unfavoriteJobId)
+    const unfavoriteJobDetails= {username: req.session.username, jobId : req.params.unfavoriteJobId}
+    return UserModelAccessor.unFavoriteJobOfUser(unfavoriteJobDetails)
+    .then(response => {
+        console.log(response)
+        res.status(200).send(response)
+    })
+    .catch(error => console.log(error))
+})
+
 
 module.exports = router;

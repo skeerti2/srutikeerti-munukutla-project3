@@ -10,7 +10,7 @@ html,body{
 .container{
     max-width: 100%;
     padding: 0%;
-    font-weight:bold;
+    font-weight:bolder;
 }
 .fa-map-marker-alt{
     color: blue;
@@ -34,9 +34,9 @@ form{
     text-align: center;
 }
 
-.card{
-    border: 2px solid #FC814A;
-} 
+/* .card{
+    
+}  */
 .buttonSubmit{
     background-color: #FC814A;
     align-content: center;
@@ -68,4 +68,34 @@ form{
     row-gap: 2em;
     justify-content: space-around;
 }
+
+/* .logInForm{
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.signUpForm{
+    margin-top: 2em;
+    
+} */
+
+.authFormCard{
+    margin-top: 2em;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 50%;
+
+}
+@media screen and (min-width: 992px) {
+    .logInButton{
+        margin-right: 1.5em;
+        justify-content: flex-end;
+    }
+  }
+
 

@@ -1,5 +1,5 @@
 import NavComp from './NavComp';
-import { Container, Form, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Form, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
@@ -75,12 +75,26 @@ function JobDetails() {
         navigate('/createJob/' + jobDetails._id)
     }
 
+    function removeJobFromFavorites(){
+        // const unfavoriteUserJob = {'username': jobDetails.createdBy, 'jobId': jobDetails._id}
+        console.log("testing")
+        axios.delete("/api/user/removeJobFromFavorites/" + jobDetails._id, {withCredentials: true})
+                .then(response => {
+                    setIsFavorite(false)
+                    console.log(response)
+                })
+                .catch(error => console.log(error))
+        }
+
     //
-    function deleteForm() {
+    function deleteJob() {
         console.log("delete the job")
-        // axios.delete('/api/job/deleteByjobId/'+jobId)
-        // .then(response => console.log(response))
-        // .catch(error => console.log(error));
+        axios.delete('/api/job/deleteByjobId/'+jobId, {withCredentials: true})
+        .then(response => {
+            navigate('/')
+            console.log(response)
+        })
+        .catch(error => console.log(error));
     }
 
     function showEditDetails() {
@@ -93,7 +107,7 @@ function JobDetails() {
                         Edit Job
                 </Button>
 
-                    <Button variant="outline-dark" type="submit" onClick={deleteForm} id="buttonDelete">
+                    <Button variant="outline-dark" type="submit" onClick={deleteJob} id="buttonDelete">
                         Delete Job
                 </Button>
                 </div>
@@ -111,14 +125,14 @@ function JobDetails() {
                             <Card.Header> <h2> {jobDetails.companyName} &nbsp;
                             {
                                     isFavorite ?
-                                        <Button variant="outline-dark">
-                                            Favorite &nbsp;
+                                        <Button variant="outline-dark" onClick={removeJobFromFavorites}>
+                                            Saved to Favorites! &nbsp;
                                 <FontAwesomeIcon icon={solidHeart}
                                             />
                                         </Button>
                                         :
                                         <Button variant="outline-dark" onClick={addJobToFavourites}>
-                                            Add Job to Favorites &nbsp;
+                                            Add Job to Favorites! &nbsp;
                             <FontAwesomeIcon icon={faHeart}
                                             />
                                         </Button>
@@ -154,7 +168,10 @@ function JobDetails() {
                 <Container>
                     <NavComp>
                         <Row>
-                            <h1>Job Details: </h1>
+                            <h1>Loading Job Details: </h1>
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
                         </Row>
                     </NavComp>
                 </Container>

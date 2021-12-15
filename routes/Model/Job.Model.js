@@ -38,7 +38,11 @@ function findJobByLocation(location){
 
 function findJobLikeTitle(title){
     console.log("query string " + '^'+title);
-    return JobModel.find({title: {'$regex': '^'+title, '$options': 'i'}});
+    return JobModel.find({title: {'$regex': '^'+title, '$options': 'i'}}).exec();
+}
+
+function deleteJob(jobId){
+    return JobModel.findByIdAndDelete(jobId).exec();
 }
 
 module.exports= {
@@ -48,5 +52,6 @@ module.exports= {
     findJobLikeTitle,
     findJobByTitle,
     findJobById,
-    findJobByLocation
+    findJobByLocation,
+    deleteJob
 }

@@ -45,14 +45,24 @@ router.post('/logIn', (req, res) =>{
     if(req.session.username){
         res.send('User already logged In')
     } else{
+        
         return UserModelAccessor.findByUsername(username)
-        .then(response => res.status(200).send(response))
+        .then(response => {
+            if(response.password !== password){
+                res.status(422).send("Please enter valid password")
+            }else{
+                req.session.username = username;
+                res.status(200).send(response)
+            }
+        })
         .catch(error => res.status(422).send("Hey new User! Please sign up first!"))
     }
 })
 
 router.get('/logout', (req, res)=>{
-    if(!req.session.username){
+    console.log("logout request received")
+    console.log(req.session.username)
+    if(req.session.username){
         req.session.destroy(error => {
             if(error){
                 console.log(error);
@@ -60,6 +70,8 @@ router.get('/logout', (req, res)=>{
                 res.status(200).send('Successfully logged out!')
             }
         });
+    }else{
+        res.status(422).send('Trouble loggin out')
     }
 })
 

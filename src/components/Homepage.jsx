@@ -15,7 +15,7 @@ function Homepage(props) {
     function handleSubmit(event) {
         event.preventDefault();
         console.log('formValue is: ', formValue)
-        axios.get('/api/job/getJobLikeTitle/' + formValue)
+        axios.get('/api/job/getJobLikeTitle/' + formValue,  {withCredentials: true})
             .then(response => setJobSearchResults(response.data))
             .catch(error => console.log(error))
     }
@@ -23,7 +23,7 @@ function Homepage(props) {
     function cardClickSubmit(event) {
         event.preventDefault()
         const jobValue = event.target.value
-        axios.get('/api/job/getJobByTitle/' + jobValue)
+        axios.get('/api/job/getJobByTitle/' + jobValue,  {withCredentials: true})
             .then(response => setJobSearchResults(response.data))
             .catch(error => console.log(error))
 
@@ -46,6 +46,13 @@ function Homepage(props) {
             </Card>
         )
     })
+
+    console.log(jobResults.length)
+    let displayJobsListCards = jobResults.length > 0 ? 
+            <Row className="topBox">
+                <h1>Showing jobs for: {formValue === '' ? '' : formValue}</h1>
+                        {jobsListCards}
+            </Row> : ''
 
     return (
         <Container>
@@ -70,13 +77,8 @@ function Homepage(props) {
                     </Button>
                 </Form>
             </Row>
-
-          
-            <Row className="topBox">
-                <h1>Showing jobs for: {formValue === '' ? '' : formValue}</h1>
-                {jobsListCards}
-            </Row>
-
+            {displayJobsListCards}
+        
         </Container>
     )
 }

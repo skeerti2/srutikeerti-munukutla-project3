@@ -14,7 +14,7 @@ function Favorites() {
     const navigate = useNavigate()
     function getFavoriteJobsForUser() {
         console.log("calling function")
-        axios.get('/api/user/getAllFavorites/'+ sessionUser)
+        axios.get('/api/user/getAllFavorites/'+ sessionUser, {withCredentials: true})
             .then(response => {
                 console.log(response.data)
                 setFavoriteJobs(response.data.favoriteJobs)
