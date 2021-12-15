@@ -1,19 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Pacifico&display=swap');
 html,body{
-    width: 100%
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    /* background-color: whitesmoke; */
+    color: #273E47;
 }
 
 .container{
     max-width: 100%;
     padding: 0%;
+    font-weight:bold;
 }
 .fa-map-marker-alt{
     color: blue;
 }
 
 .topBox{
-    margin: 3em;
+    margin: 2em;
 }
 
 .nav{
-    background-color: rgb(226, 160, 174);
+    /* background-color: rgb(85, 236, 229); */
+    background-color: #00D9BA;
 }
+
+.brand-icon-text{
+    font-family: 'Pacifico', cursive;
+    color: white;
+}
+
+form{
+    text-align: center;
+}
+
+.card{
+    border: 2px solid #FC814A;
+} 
+.buttonSubmit{
+    background-color: #FC814A;
+    align-content: center;
+    color: #273E47;
+}
+
+.banner{
+    height: 400px;
+    text-align: center;
+    /* background-color: rgb(245, 245, 122); */
+    background-color: #F7E733;
+    /* font-size: 3em; */
+}
+
+.banner-title{
+    color:#FC814A;
+    font-family: 'Pacifico', cursive;
+    font-size: 10em;
+}
+
+.search-control{
+    border: 2px solid #273E47 ;
+    border-radius: 2em;
+}
+
+.detailsButtons{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+    justify-content: space-around;
+}
+

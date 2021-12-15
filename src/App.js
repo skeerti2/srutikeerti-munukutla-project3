@@ -50,8 +50,8 @@ function App() {
     <div className="container">
       <Routes>
         <Route path="/" element={<Homepage toSetJobDetails={setDataFromHomePage}/>}/>
-        <Route path="/jobDetails" element={<JobDetails jobDetails={jobData}/>}/>
-        <Route path="/createJob" element={<JobCreate toSetJobDetails={setDataFromHomePage} />}/>
+        <Route path="/jobDetails/:jobId" element={<JobDetails/>}/>
+        <Route path="/createJob/:jobId" element={<JobCreate />}/>
         <Route path="/api/user/:userFavorites" element={<UserFavoriteList/>}/>
         <Route path="/logIn" element={<LogIn/>}/>
         <Route path="/signUp" element={<SignUp/>}/>
