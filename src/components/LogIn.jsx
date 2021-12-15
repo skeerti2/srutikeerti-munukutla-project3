@@ -36,7 +36,7 @@ function LogIn() {
         if (!userLogInDetails.username && !userLogInDetails.password) {
             setbadInputValidation("username/password cannot be empty")
         } else {
-            axios.post("/auth/logIn", userLogInDetails)
+            axios.post("/auth/logIn", userLogInDetails, {withCredentials: true})
                 .then(response => {
                     console.log(response)
                     sessionStorage.setItem('username', response.data.username);

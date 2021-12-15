@@ -20,9 +20,18 @@ function updateUserFavorites(favoriteDetails){
         {$push : {favoriteJobs: favoriteDetails.jobDetails._id}})
 }
 
+function unFavoriteJobOfUser(unfavoriteJobDetails){
+    console.log(unfavoriteJobDetails)
+    return UserModel.updateOne({username: unfavoriteJobDetails.username},
+        {$pullAll: {
+            favoriteJobs: [unfavoriteJobDetails.jobId]
+        }})
+}
+
 module.exports = {
     createUser,
     findByUsername,
     updateUserFavorites,
+    unFavoriteJobOfUser,
     deleteUser
 }

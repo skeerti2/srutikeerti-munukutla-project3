@@ -46,13 +46,16 @@ router.post('/logIn', (req, res) =>{
         res.send('User already logged In')
     } else{
         return UserModelAccessor.findByUsername(username)
-        .then(response => res.status(200).send(response))
+        .then(response => {
+            req.session.username = username;
+            res.status(200).send(response)
+        })
         .catch(error => res.status(422).send("Hey new User! Please sign up first!"))
     }
 })
 
 router.get('/logout', (req, res)=>{
-    if(!req.session.username){
+    if(req.session.username){
         req.session.destroy(error => {
             if(error){
                 console.log(error);

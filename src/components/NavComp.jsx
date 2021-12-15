@@ -32,7 +32,7 @@ function NavComp() {
     function handleLogout(event) {
         console.log("handle logout")
         event.preventDefault();
-        axios.get('/auth/logout')
+        axios.get('/auth/logout', {withCredentials: true})
         .then(response =>
             {
                 sessionStorage.removeItem('username')
