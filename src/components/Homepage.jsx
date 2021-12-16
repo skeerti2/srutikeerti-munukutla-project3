@@ -32,7 +32,7 @@ function Homepage(props) {
     //NOT SURE
     let jobsListCards = jobResults.map(job => {
         return (
-            <Card className="searchResultCard" style={{ width: '18rem' }}>
+            <Card className="shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
                 <Card.Body>
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{job.companyName}</Card.Subtitle>
@@ -50,8 +50,10 @@ function Homepage(props) {
     console.log(jobResults.length)
     let displayJobsListCards = jobResults.length > 0 ? 
             <Row className="topBox">
-                <h1>Showing jobs for: {formValue === '' ? '' : formValue}</h1>
+                <h3>Showing jobs for: {formValue === '' ? '' : formValue}</h3>
+                <div className="searchCards">
                         {jobsListCards}
+                </div>
             </Row> : ''
 
     return (
@@ -60,7 +62,7 @@ function Homepage(props) {
             <Row>
                 <section class="banner">
                     <h1 className="banner-title">Switch<FontAwesomeIcon icon={faLevelUpAlt}/>Up  </h1>
-                    <h5>Making dreams a reality</h5>
+                    <h5 className="topBox">Making dreams a reality</h5>
                 </section>
             </Row>
             {/* <h1>Hi there, {sessionStorage.getItem('username')}</h1> */}

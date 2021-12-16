@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import NavComp from '../components/NavComp'
 import { Container, Form, Row, Col, Card, Button } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFrown } from '@fortawesome/free-solid-svg-icons'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
@@ -26,7 +27,7 @@ function Favorites() {
 
     const favoritesTodisplay = favoriteJobs.map(item => {
         return (
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '18rem' }} className="shadow p-3 mb-5 bg-white rounded">
                 <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{item.companyName}</Card.Subtitle>
@@ -48,7 +49,11 @@ function Favorites() {
             )
         }else{
             return(
-            <h1>{sessionUser}, you have no favorite jobs yet</h1>
+            <div className="topRow">
+            <h1>{sessionUser}, you have no favorite jobs yet!</h1>
+            <h1> <FontAwesomeIcon icon={faFrown}/></h1>
+            </div>
+            
             )
         }
     }
@@ -58,7 +63,9 @@ function Favorites() {
             <NavComp></NavComp>
             <Row className="topBox">
                 {display()}
-                {favoritesTodisplay}
+                <div className="searchCards">
+                    {favoritesTodisplay}
+                </div>
             </Row>
         </Container>
     )

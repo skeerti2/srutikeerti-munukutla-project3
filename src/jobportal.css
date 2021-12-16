@@ -16,6 +16,7 @@ html,body{
     color: blue;
 }
 
+
 .topBox{
     margin: 2em;
 }
@@ -27,7 +28,13 @@ html,body{
 
 .brand-icon-text{
     font-family: 'Pacifico', cursive;
-    color: white;
+    
+}
+
+.navbar-light .navbar-brand{
+    text-shadow: -1px 0 #273E47, 0 1px #273E47, 1px 0 #273E47, 0 -1px #273E47;
+    color: #FC814A;
+    margin-left: 1em;
 }
 
 form{
@@ -103,7 +110,7 @@ h1{
 
 .searchResultCard{
     width: '18rem',
-    
+
 }
 @media screen and (min-width: 992px) {
     .logInButton{
@@ -111,5 +118,35 @@ h1{
         justify-content: flex-end;
     }
   }
+
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .banner-title{
+        color:#FC814A;
+        font-family: 'Pacifico', cursive;
+        font-size: 5em;
+    }
+  }
+
+  @media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    .banner-title{
+        color:#FC814A;
+        font-family: 'Pacifico', cursive;
+        font-size: 6em;
+    }
+  }
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .banner-title{
+        color:#FC814A;
+        font-family: 'Pacifico', cursive;
+        font-size: 7em;
+    }
+  }
+.searchCards{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2em;
+}
 
 
