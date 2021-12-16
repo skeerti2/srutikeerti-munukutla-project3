@@ -151,7 +151,8 @@ function JobCreate() {
                 <Container>
                     <NavComp></NavComp>
                     <Row className="topBox">
-                        <Form onSubmit={handleUpdateJob}>
+                    <h3>Edit a Job Posting</h3>
+                        <Form className="shadow p-3 mb-5 bg-white rounded" onSubmit={handleUpdateJob}>
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridTitle">
                                     <Form.Label>Title</Form.Label>
@@ -199,15 +200,11 @@ function JobCreate() {
 
                                 <Form.Group as={Col} controlId="formCompanyWebsite">
                                     <Form.Label>Company Website</Form.Label>
-                                    <Form.Control required type="companyWebsite" placeholder={jobDetails.companyWebsite}
+                                    <Form.Control type="companyWebsite" placeholder={jobDetails.companyWebsite}
                                         value={jobDetails.companyWebsite}
                                         onChange={(e) => handleCompanyWebsiteChange(e)} />
                                 </Form.Group>
                             </Row>
-
-                            {/* <Form.Group className="mb-3" id="formGridCheckbox">
-                                    <Form.Check type="checkbox" label="Favourite" />
-                                </Form.Group> */}
 
                             <Button variant="outline-dark" type="submit">
                                 Update Job
@@ -221,8 +218,9 @@ function JobCreate() {
         return (
             <Container>
                 <NavComp></NavComp>
-                <Row className="topBox">
-                    <Form onSubmit={handleCreateJob}>
+                <Row className="topBox ">
+                    <h3>Create a Job Posting</h3>
+                    <Form className="shadow p-3 mb-5 bg-white rounded" onSubmit={handleCreateJob}>
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridTitle">
                                 <Form.Label>Title</Form.Label>
@@ -237,10 +235,10 @@ function JobCreate() {
                             </Form.Group>
                         </Row>
 
-                        <Form.Group controlId="formFile" className="mb-3">
+                        {/* <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Default file input example</Form.Label>
                             <Form.Control type="file" onChange={handleFileUpload} />
-                        </Form.Group>
+                        </Form.Group> */}
 
                         {/* <Form.Group className="mb-3" controlId="formJobPostingDate">
                                 <Form.Label>Job Posting Date</Form.Label>
@@ -270,14 +268,10 @@ function JobCreate() {
 
                             <Form.Group as={Col} controlId="formCompanyWebsite">
                                 <Form.Label>Company Website</Form.Label>
-                                <Form.Control required type="companyWebsite" placeholder="Enter company details"
+                                <Form.Control type="companyWebsite" placeholder="Enter company details"
                                     onChange={(e) => handleCompanyWebsiteChange(e)} />
                             </Form.Group>
                         </Row>
-
-                        {/* <Form.Group className="mb-3" id="formGridCheckbox">
-                                <Form.Check type="checkbox" label="Favourite" />
-                            </Form.Group> */}
 
                         <Button variant="outline-dark" type="submit">
                             Submit

@@ -9,7 +9,6 @@ import {Routes, Router, Route} from 'react-router-dom';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import JobDetails from './components/JobDetails';
-import UserFavoriteList from './components/UserFavoriteList';
 import {useNavigate} from 'react-router-dom';
 import JobCreate from './components/JobCreate';
 import {createStore} from 'redux';
@@ -52,7 +51,6 @@ function App() {
         <Route path="/" element={<Homepage toSetJobDetails={setDataFromHomePage}/>}/>
         <Route path="/jobDetails/:jobId" element={<JobDetails/>}/>
         <Route path="/createJob/:jobId" element={<JobCreate />}/>
-        <Route path="/api/user/:userFavorites" element={<UserFavoriteList/>}/>
         <Route path="/logIn" element={<LogIn/>}/>
         <Route path="/signUp" element={<SignUp/>}/>
         <Route path="/favorites" element={<Favorites/>}/>

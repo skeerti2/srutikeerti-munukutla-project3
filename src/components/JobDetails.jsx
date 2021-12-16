@@ -18,7 +18,7 @@ function JobDetails() {
     const [isFavorite, setIsFavorite] = useState(false)
 
     function getJobFromId() {
-        axios.get('/api/job/getJobById/' + jobId)
+        axios.get('/api/job/getJobById/' + jobId, {withCredentials: true})
             .then(response => {
                 console.log(response)
                 setJobDetails(response.data)
@@ -29,7 +29,7 @@ function JobDetails() {
     function getUserFavorites() {
         console.log("calling function")
         if (jobId) {
-            axios.get('/api/user/getAllFavorites/' + sessionStorage.getItem('username'))
+            axios.get('/api/user/getAllFavorites/' + sessionStorage.getItem('username'), {withCredentials: true})
                 .then(response => {
                     console.log(response.data)
                     response.data.favoriteJobs.forEach(job => {
@@ -50,11 +50,11 @@ function JobDetails() {
         //NOTE: using local state gives null for favorite details. Accessing immediately after setting local state
         // fails since its asynchronous. So this making this a local variable instead
         //Use localState only if it is for display/rendering
-        const favoriteDetails = { username: sessionStorage.getItem('username'), jobDetails: jobDetails }
+        const favoriteDetails = { username: sessionStorage.getItem('username'), jobDetails: jobDetails}
         if (sessionStorage.getItem('username')) {
             console.log('before axios')
             console.log(favoriteDetails);
-            axios.put("/api/user/addToUserFavourite", favoriteDetails)
+            axios.put("/api/user/addToUserFavourite", favoriteDetails, {withCredentials: true})
                 .then(response => {
                     setIsFavorite(true)
                     console.log(response)
@@ -149,7 +149,10 @@ function JobDetails() {
                                             <FontAwesomeIcon icon={faEnvelope} />
                                         &nbsp;
                                     {jobDetails.employerMailContact}</p>
+                                    {jobDetails.companyWebsite ?
                                         <p>More: {jobDetails.companyWebsite}</p>
+                                        : ''
+                                    }
                                     </div>
 
                                 </Card.Text>
@@ -204,7 +207,10 @@ function JobDetails() {
                                             <FontAwesomeIcon icon={faEnvelope} />
                                             &nbsp;
                                         {jobDetails.employerMailContact}</p>
+                                        {jobDetails.companyWebsite ?
                                         <p>More: {jobDetails.companyWebsite}</p>
+                                        : ''
+                                    }
                                     </div>
                                 </Card.Text>
                             </Card.Body>

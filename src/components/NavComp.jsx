@@ -8,36 +8,16 @@ import { useNavigate } from 'react-router-dom';
 import '../jobportal.css';
 
 function NavComp() {
-    // const [currentUser, setCurrentUser] = useState('');
     const user = sessionStorage.getItem('username');
     const navigate = useNavigate()
-    //useEffect(user, [])
-    // function getLoggedIn() {
-    //     axios.get('http://localhost:8000/auth/isLoggedIn')
-    //         .then(response => {
-    //             console.log("/isLoggedIn response:", response)
-    //             console.log("current user is:", response.data.username)
-    //             let newUser = response.data.username
-    //             setCurrentUser(newUser);
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //         })
-    // }
-
-    // getLoggedIn()
-    // // useEffect(getLoggedIn, []);
-    // // useEffect(currentUser, "")
 
     function handleLogout(event) {
         console.log("handle logout")
-        //event.preventDefault();
         axios.get('/auth/logout', {withCredentials: true})
         .then(response =>
             {
                 sessionStorage.removeItem('username')
                 sessionStorage.clear()
-                console.log("successfully logged out" + sessionStorage.getItem('username'))
                 navigate('/')
             })
         .catch(error => console.log(error))
@@ -45,7 +25,6 @@ function NavComp() {
 
     console.log("rendering navbar");
     if (user) {
-        console.log("user is logged in and details are: " + user)
         return (
             <Navbar className="nav" expand="lg">
                 <Container>
